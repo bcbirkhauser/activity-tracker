@@ -1,3 +1,10 @@
+/*!
+ * ActivityTracker.js - 0.2.0
+ *
+ * Copyright (c) 2014, Brian Birkhauser
+ * Licensed under the MIT license,
+ * http://www.opensource.org/licenses/MIT
+ */
 (function(undefined) {
     "use strict";
     var ActivityTracker = {
