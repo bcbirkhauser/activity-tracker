@@ -6,14 +6,14 @@
 		<h1>This is an awesome test</h1>
 	<p>When you want to track <a href="#" data-track="category1" data-track-args="['activity1', 'argument2']">Activity</a> like this, you simply add <pre>data-track="category"</pre> to the attribute you want to <a href="#awesomeCategory" data-track="category2">track</a>.</p>
 	<p data-track="default" id="trackDiv">This link will track the id because it is actually a div  and not an anchor tag.</p>
-	<p>Alternatively, you can manually call the <a href="#" onclick="tracker.track('manual', 'i am awesome'); return false;">track function.</a></p>
-	<p>To get the data, you simply call the function on the tracker<pre>var data = tracker.getData();</pre> Test it out by clicking <a href="#" onclick="tracker.getData(); return false;">here</a> and viewing the debug console.</p>
+	<p>Alternatively, you can manually call the <a href="#" onclick="ActivityTracker.track('manual', 'i am awesome'); return false;">track function.</a></p>
+	<p>To get the data, you simply call the function on the tracker<pre>var data = ActivityTracker.getData();</pre> Test it out by clicking <a href="#" onclick="ActivityTracker.getData(); return false;">here</a> and viewing the debug console.</p>
 <script src="../vendor/jquery.js" type="text/javascript" charset="utf-8"></script>
 <script src="../vendor/class.js" type="text/javascript" charset="utf-8"></script>
 <script src="../vendor/cookies.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="../src/activitytracker.js" type="text/javascript" charset="utf-8"></script>
 <script type="text/javascript">
-var tracker = new ActivityTracker();
+//var tracker = new ActivityTracker();
 </script>
 </body>
 </html>
