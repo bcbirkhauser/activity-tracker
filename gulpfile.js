@@ -11,7 +11,7 @@ var gulp = require('gulp'),
 
 var BUILDDIR = 'dist/';
 var SRCDIR = 'src/';
-var VENDORFILES = ['vendor/cookies.min.js'];
+var VENDORFILES = ['vendor/cookies.min.js', 'vendor/browser.js'];
 
 
 
@@ -28,7 +28,7 @@ gulp.task('browserify', function() {
 
 
 gulp.task('build', function() {
-    gulp.src([VENDORFILES.join(), SRCDIR + '*'])
+    gulp.src(['vendor/cookies.min.js', 'vendor/browser.js', SRCDIR + '*'])
         .pipe(concat('activitytracker.full.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest(BUILDDIR))
