@@ -9,6 +9,7 @@
     "use strict";
     var ActivityTracker = {
         _keys: [],
+        _gaObj: null,
         _trackClick: function(item) {
             var category = item.getAttribute('data-track');
             if (category != 'true') {
@@ -24,7 +25,7 @@
         init: function() {
 
             if (!Cookies.enabled) {
-                console.log('Cannot track  - Cookies are disabled');
+                console.warn('Cannot track  - Cookies are disabled');
                 return;
             }
             Cookies.defaults = {
@@ -44,11 +45,18 @@
                     _tracker._trackClick(ev.target);
                 });
             }
+        },
+        enableGA: function(_ga) {
+            this._gaObj = _ga;
         }
     };
     ActivityTracker.track = function(cat, args) {
+
+        if (this._gaObj) {
+            this._gaObj('send', 'event', 'activity', cat, args);
+        }
         if (!Cookies.enabled) {
-            console.log('Cannot track  - Cookies are disabled');
+            console.warn('Cannot track  - Cookies are disabled');
             return;
         }
         if (this._keys.indexOf(cat) == -1) {
@@ -74,7 +82,7 @@
 
     ActivityTracker.getData = function(cat) {
         if (!Cookies.enabled) {
-            console.log('Cannot track  - Cookies are disabled');
+            console.warn('Cannot track  - Cookies are disabled');
             return;
         }
         var data = {};
@@ -87,13 +95,12 @@
         } else {
             data = JSON.parse(Cookies.get('ActivityTracker_' + cat));
         }
-        console.debug(data);
         return data;
     };
 
     ActivityTracker.clearData = function(cat) {
         if (!Cookies.enabled) {
-            console.log('Cannot track  - Cookies are disabled');
+            console.warn('Cannot track  - Cookies are disabled');
             return;
         }
         if (!cat) {
