@@ -10,6 +10,7 @@
     var ActivityTracker = {
         _keys: [],
         _gaObj: null,
+        _browser: null,
         _trackClick: function(item) {
             var category = item.getAttribute('data-track');
             if (category != 'true') {
@@ -23,7 +24,8 @@
             this.track(category, args);
         },
         init: function() {
-
+            var browser = new Browser.controller();
+            this._browser = browser.setData();
             if (!Cookies.enabled) {
                 console.warn('Cannot track  - Cookies are disabled');
                 return;
@@ -85,7 +87,9 @@
             console.warn('Cannot track  - Cookies are disabled');
             return;
         }
+
         var data = {};
+        data['browser'] = this._browser;
         if (!cat) {
             this._keys = JSON.parse(Cookies.get('ActivityTrackerKeys'));
             for (var i = 0; i < this._keys.length; i++) {
